@@ -1,4 +1,4 @@
-package com.example.demo.configuration;
+package com.example.parking.configuration;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "spring")
 public class AppConfig {
 
-    private Ticket ticket;
+    private VehicleTypePrices vehicleTypePrices;
 
-    public static class Ticket {
+    public static class VehicleTypePrices {
         private double hourlyCharges;
 
         // Getters and Setters

@@ -1,15 +1,16 @@
-package com.example.demo.entity;
+package com.example.parking.entity;
 
 import jakarta.persistence.Entity;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import org.springframework.data.annotation.Id;
 
 @Entity
 public class ParkingLot {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer parkingLotId;
     private Integer totalLevels;
-    private ArrayList<ParkingSpot> parkingSpots;
-    private HashMap<VehicleType,Double> prices;
     public static ParkingLot instance;
 
     public static ParkingLot getInstance() {
@@ -26,15 +27,8 @@ public class ParkingLot {
         this.totalLevels = totalLevels;
     }
 
-    public void setPrices(HashMap<VehicleType, Double> prices) {
-        this.prices = prices;
-    }
-
     public Integer getTotalLevels() {
         return totalLevels;
     }
 
-    public HashMap<VehicleType, Double> getPrices() {
-        return prices;
-    }
 }

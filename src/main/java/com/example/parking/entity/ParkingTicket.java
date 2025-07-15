@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.parking.entity;
 
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 
 @Entity
-@Table(name = "parking-ticket")
+@Table(name = "parking-tickets")
 public class ParkingTicket {
 
     @Id

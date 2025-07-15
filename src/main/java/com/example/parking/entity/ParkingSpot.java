@@ -1,15 +1,15 @@
-package com.example.demo.entity;
+package com.example.parking.entity;
 
 import jakarta.persistence.*;
-import org.springframework.data.relational.core.sql.In;
 
 @Entity
-@Table(name = "parking-spot")
+@Table(name = "parking-spots")
 public class ParkingSpot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer spotId;
+    private Integer parkingLotId;
     private VehicleSize spotSize;
     private Boolean isEmpty;
     private Integer floor;
