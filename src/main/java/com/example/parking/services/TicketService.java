@@ -6,6 +6,7 @@ import com.example.parking.entity.ParkingSpot;
 import com.example.parking.entity.ParkingTicket;
 import com.example.parking.entity.VehicleType;
 import com.example.parking.repository.TicketManagerRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -15,15 +16,24 @@ import java.util.List;
 @Component
 public class TicketService {
 
-    TicketManagerRepository ticketManagerRepository;
-    ParkingSpotService parkingService;
-    ParkingTicket parkingTicket;
-    VehicleConfig vehicleConfig;
+    private final TicketManagerRepository ticketManagerRepository;
+    private final ParkingSpotService parkingService;
+    private final ParkingTicket parkingTicket;
+    private final VehicleConfig vehicleConfig;
 
+    public TicketService(TicketManagerRepository ticketManagerRepository, ParkingSpotService parkingService, ParkingTicket parkingTicket, VehicleConfig vehicleConfig) {
+        this.ticketManagerRepository = ticketManagerRepository;
+        this.parkingService = parkingService;
+        this.parkingTicket = parkingTicket;
+        this.vehicleConfig = vehicleConfig;
+    }
+
+
+    @Transactional
     public ParkingTicket generateEntryTicket(VehicleType vehicleType, String licenseNumber){
         ParkingSpot parkingSpot = parkingService.getNearestAvailableSpot(vehicleType);
         ParkingTicket ticket = parkingTicket.getTicket(vehicleType,licenseNumber,parkingSpot.getSpotId());
-        parkingService.fillSpot(parkingSpot.getSpotId());
+        parkingService.fillSpot(parkingSpot);
         ticketManagerRepository.save(ticket);
         return ticket;
     }
@@ -48,6 +58,8 @@ public class TicketService {
         totalBill = totalHours *  vehicleConfig.getVehicleCharge(activeTicket.getVehicleType());
         activeTicket.setFinalBill(totalBill, currTime);
         ticketManagerRepository.save(activeTicket);
+        ParkingSpot parkingSpot = parkingService.getSpotById(activeTicket.getSpotId());
+        parkingService.relieveSpot(parkingSpot);
         return activeTicket;
     }
 
