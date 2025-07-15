@@ -2,6 +2,7 @@ package com.example.parking.entity;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "parking-spots")
 public class ParkingSpot {
@@ -10,6 +11,11 @@ public class ParkingSpot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer spotId;
     private Integer parkingLotId;
+
+    public void setEmpty(Boolean empty) {
+        isEmpty = empty;
+    }
+
     private VehicleSize spotSize;
     private Boolean isEmpty;
     private Integer floor;
