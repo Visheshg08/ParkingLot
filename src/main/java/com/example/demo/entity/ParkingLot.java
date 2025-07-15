@@ -1,12 +1,14 @@
-package com.example.demo.Entity;
+package com.example.demo.entity;
+
+import jakarta.persistence.Entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+@Entity
 public class ParkingLot {
     private Integer totalLevels;
-    private ArrayList<ParkingFloor> levelData;
+    private ArrayList<ParkingSpot> parkingSpots;
     private HashMap<VehicleType,Double> prices;
     public static ParkingLot instance;
 
@@ -24,20 +26,12 @@ public class ParkingLot {
         this.totalLevels = totalLevels;
     }
 
-    public void setLevelData(ArrayList<ParkingFloor> levelData) {
-        this.levelData = levelData;
-    }
-
     public void setPrices(HashMap<VehicleType, Double> prices) {
         this.prices = prices;
     }
 
     public Integer getTotalLevels() {
         return totalLevels;
-    }
-
-    public ArrayList<ParkingFloor> getLevelData() {
-        return levelData;
     }
 
     public HashMap<VehicleType, Double> getPrices() {
