@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: parkingLot
+    version: 1.0.0
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/parking-lot
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  ticket:
+    hourlyCharges: 100
+
+
