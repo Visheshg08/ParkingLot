@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.parking.entity;
 
 public enum VehicleSize {
     SMALL,

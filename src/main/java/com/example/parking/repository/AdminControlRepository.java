@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package com.example.parking.repository;
 
-import com.example.demo.entity.Admin;
+import com.example.parking.entity.Admin;
 import org.springframework.data.repository.CrudRepository;
 
 public interface AdminControlRepository extends CrudRepository<Admin,Integer> {
