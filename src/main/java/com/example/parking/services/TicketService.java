@@ -28,7 +28,6 @@ public class TicketService {
         this.vehicleConfig = vehicleConfig;
     }
 
-
     @Transactional
     public ParkingTicket generateEntryTicket(VehicleType vehicleType, String licenseNumber){
         ParkingSpot parkingSpot = parkingService.getNearestAvailableSpot(vehicleType);

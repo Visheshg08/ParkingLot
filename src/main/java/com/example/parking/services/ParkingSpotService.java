@@ -7,6 +7,8 @@ import com.example.parking.entity.VehicleType;
 import com.example.parking.repository.ParkingSpotRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class ParkingSpotService {
 
@@ -45,6 +47,14 @@ public class ParkingSpotService {
     public ParkingSpot getParkingSpotOfVehicle(String licenseNumber){
         return parkingSpotRepository.getVehicleSpot(licenseNumber)
                 .orElseThrow(() -> new ParkingSpotNotFoundException("No spot for license: " + licenseNumber));
+    }
+
+    public void createParkingSpots(List<ParkingSpot> parkingSpots){
+        parkingSpotRepository.saveAll(parkingSpots);
+    }
+
+    public  void  deleteParkingSpot(Integer spotId){
+        parkingSpotRepository.deleteById(spotId);
     }
 
 

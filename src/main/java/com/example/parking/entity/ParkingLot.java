@@ -11,13 +11,19 @@ public class ParkingLot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer parkingLotId;
     private Integer totalLevels;
+    private String name;
     public static ParkingLot instance;
 
     public static ParkingLot getInstance() {
         if(instance == null){
-            instance = new ParkingLot();
+            instance = new ParkingLot(121,3);
         }
         return instance;
+    }
+
+    public ParkingLot(Integer parkingLotId, Integer totalLevels) {
+        this.parkingLotId = parkingLotId;
+        this.totalLevels = totalLevels;
     }
 
     private ParkingLot() {
@@ -31,4 +37,7 @@ public class ParkingLot {
         return totalLevels;
     }
 
+    public Integer getParkingLotId() {
+        return parkingLotId;
+    }
 }
