@@ -17,11 +17,6 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
-    # Optional: configure Flyway
-    flyway:
-      enabled: true
-      locations: classpath:db/migration
-
 Vehicle:
   type:
     Car:
@@ -38,8 +33,9 @@ Vehicle:
       hourlyCharges: 100
 
 
-
-
-
-
+server:
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 10
 
